@@ -1,0 +1,87 @@
+RNN (Recurrent Neural Network)
+
+Q)why RNN was invented?
+A)Traditional Neural Networks cannot remember previous info. that's why we have invented RNN.
+ex: I grew in France, I speak fluent _________ it need to predict French
+Normal neural networks process the input independently but language depends on the previous info.
+
+Q)What is RNN?
+A) RNN is a neural network designed for sequential data.
+Applications:
+language,speech,stock prediction.
+
+Formula: h_t =tanh(W_h h_{t-1} + W_x x_t)
+
+problem with RNN:
+vanishing gradient(earlier whole influence disappear)
+long-term dependency problem
+
+LSTM(Long Short Term Memory)
+it is designed to remember long-term info.
+ex: how u remember ur name,school,birthday because ur brain decides what to remember and what to forget.
+LSTM is same it remembers few and forgets few
+LSTM have 3 gates:
+1. forget gate: decides what to remove from memory.
+ex: I live in hyd now I previously lived in delhi, it forgets the delhi
+2. input gate: decides what new info. to store.
+ex:today is raining, it will store raining
+3. output gate:decide what to set as output.
+
+Why LSTM works better than RNN?
+1.memory
+2.gradient - rnn vanishes, lstm reaches tables
+3.Accuracy
+
+GRU(Gated Recurrent Unit):
+it is a simplified version LSTM
+instead of 3 gates we have only 2 gates:
+Update gate: controls how much fast the info. to keep
+Reset gate: how much fast the info. to forget
+
+Bidirectional RNN:
+Normal RNN reads text from left to right
+ex: i went to the bank to deposit money
+model reads the sequences in both directions
+1.forward
+2. backward
+
+Why bidirectional is useful?
+ex: HE went to bank to withdraw money
+he went to the bank in forward pass
+withdraw money in backward pass
+now bank=financial bank not river bank
+
+*Encoder, Decoder is used in sequence to sequence task
+Encoder, decoder inside lstm, gru will be there
+ex: machine translator
+
+Encoder: it reads the entire input in sequence
+ex:i love ML, encoder converts that particular input into context vector
+this vector contains the meaning of the context
+
+Decoder: it generates output sequence from the context vector
+
+Problem: context vector compresses the entire sentences into 1 single vector
+for long sentences info. will lose
+Solution: attention mechanism,(imp) transformation works in attention mechanism
+
+Self Attention:
+it allows a model to *focus on imp words in a sentence*
+ex: the animals unable to cross the stream because it was too tired
+self attention calculates imp bw the words
+
+How self attention works?
+Query = what im looking for
+Key = what do I contain
+Value = actual info.
+attention score= query * key
+ex: a dog chased cat because it was hungry, here it - dog
+attention tells dog is more imp than the cat
+
+Model	Strength	Weaknesses
+RNN	it is a simple	forget the long context
+LSTM	long memory	it is complex
+GRU	faster	slightly it is more expensive
+Bidirectional		slow
+Encoder Decoder	sequence to sequence task	context bottleneck(forgets the imp of long)
+Self Attention	global context	high compute
